@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Yii Training</title>
+
+		<meta name="description" content="Yii Training">
+		<meta name="author" content="Shamsher Ansari">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- Display Slides -->
+			<div class="slides">
+				<section data-background="#16A085">
+					<h2>Welcome</h2>
+					<h4>to</h4>
+					<h1>Yii Training</h1>
+					<h4>Prepared by </h4>
+					<a href="http://about.me/shamsher" target="_blank">Shamsher Ansari</a>
+				</section>
+
+				<section data-background="#F39C12">
+					<h1>Day 4</h1>
+					<ol>
+						<li>Theming and extensions </li>
+						<ul>
+							<li>Applying the theme</li>
+							<li>Custom themes</li>
+							<li>Extensions</li>
+						</ul>
+						<li>Error handling and testing </li>
+						<ul>
+							<li>Error handling</li>
+							<li>Testing</li>
+						</ul>
+					</ol>
+				</section>
+
+				<section data-background="#34495E">
+					<h2><a href="http://www.yiiframework.com/doc/guide/1.1/en/topics.theming" target="_blank">Theme</a></h2>
+					<h4>‘Because some things are better in color’</h4>
+					<ul>
+						<li>Customizes the outlook of pages.</li>
+						<li>Changes the overall appearance of a Web application</li>
+					</ul>
+
+					<p><!-- Left Blank --></p>
+
+					<h3>Yii theme is a Directory of</h3>
+					<ul>
+						<li>View</li>
+						<li>Layout</li>
+						<li>Resources like CSS,JS,LESS</li>
+					</ul>
+				</section>
+
+				<section data-background="#9B59B6">
+					<h2>Different Ways to Theming</h2>
+					<ul>
+						<li>Customize existing Theme</li>
+						<li>Create your own Theme</li>
+					</ul>
+
+					<h3>Lets Download and Apply some theme.</h3>
+				</section>
+
+				<section data-background="#913D88">
+					<h2><a href="http://www.yiiframework.com/doc/guide/1.1/en/extension.use" target="_blank">Extensions</a></h2>
+					
+					<ol>
+						<li>Download the extension</li>
+						<li>Unpack the extension</li>
+						<li>Import, configure and use the extension</li>
+					</ol>
+				</section>
+
+				<section data-background="#e74c3c">
+					<h2><a href="http://www.yiiframework.com/doc/guide/1.1/en/topics.error" target="_blank">Error Handling</a></h2>
+					<p>Based on PHP 5 exception mechanism.</p>
+					<h3>Error</h3>
+					<h3>Exception</h3>
+					<ul>
+						<li>Raising Exceptions</li>
+						<li>Displaying Errors</li>
+						<li>Handling Errors Using an Action</li>
+					</ul>
+				</section>
+
+				<section data-background="#34495e">
+					<h2>Raising Exceptions</h2>
+					<pre>
+						<code class="javascript" data-trim="" style="font-size: 18px; margin-top: 20px;">
+							throw new ExceptionClass('ExceptionMessage');
+						</code>
+					</pre>
+					<ol>
+						<li>CException</li>
+							<ul>
+								<li>generic exception class.</li>
+							</ul>
+						<li>CDbException</li>
+							<ul>
+								<li>Caused by some DB-related operations.</li>
+							</ul>
+						<li>CHttpException</li>
+							<ul>
+								<li>Caused by HTTP request</li>
+								<li>Returns HTTP Status Code</li>
+								<li>eg:  404 error (page not found)</li>
+							</ul>
+					</ol>
+				</section>
+
+				<section data-background="#3498db">
+					<h2>Displaying Errors</h2>
+					<ul>
+						<li><i>WebRoot/themes/ThemeName/views/system</i></li>
+						<li><i>WebRoot/protected/views/system</i></li>
+						<li><i>yii/framework/views</i></li>
+					</ul>
+				</section>
+
+				<section data-background="#27ae60">
+					<h2>Handling Errors Using an Action</h2>
+					<p>First Method</p>
+					<pre>
+						<code class="javascript" data-trim="" style="font-size: 18px; margin-top: 20px;">
+							return array(
+							    ......
+							    'components'=>array(
+							        'errorHandler'=>array(
+							            'errorAction'=>'site/error',
+							        ),
+							    ),
+							);
+						</code>
+					</pre>
+
+					<p>Second Method</p>
+					<pre>
+						<code>
+							public function actionError()
+							{
+							    if($error=Yii::app()->errorHandler->error)
+							        $this->render('error', $error);
+							}
+						</code>
+					</pre>
+				</section>
+
+				<section data-background="#e67e22">
+					<h2><a href="http://www.yiiframework.com/doc/guide/1.1/en/test.unit" target="_blank">Unit Testing</a></h2>
+					<h3>Yii testing Framework is built on top of <a href="http://phpunit.de/" target="_blank">PHPUnit</a>.</h3>
+					<ul>
+						<li>CTestCase</li>
+						<li>CDbTestCase</li>
+					</ul>
+
+					<pre>
+						<code class="javascript" data-trim="" style="font-size: 18px; margin-top: 20px;">
+						class CommentTest extends CDbTestCase
+						{
+						    public $fixtures=array(
+						        'posts'=>'Post',
+						        'comments'=>'Comment',
+						    );
+						 
+						    ......
+						}
+						</code>
+					</pre>
+					<p>Stored under directory <i>protected/tests/unit</i></p>
+				</section>
+
+				<section data-background="#2980B9">
+					<h1>Lets do some practical experiment</h1>
+				</section>
+
+				<section data-background="#F39C12">
+					<h2>Questions ?</h2>
+					<h4>Ask Google</h4>
+					<p><b>"No one knows better then Google"</b></p>
+				</section>
+				
+				<section data-background="#9b59b6">
+					<h1>THANK YOU</h1>
+					<h3><a href="http://about.me/shamsher" target="_blank">Shamsher Ansari</a></h3>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			/* Initiaz Reveal Js */		
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, 
+				transition: Reveal.getQueryHash().transition || 'page',
+			});
+		</script>
+	</body>
+</html>
